@@ -55,7 +55,10 @@
                 console.log('API called successfully. Returned data: ' + response.body);
 
                 base64EncodedPDF = Base64Encode(response.body);
-                window.open("data:application/pdf;base64, " + base64EncodedPDF);
+
+                outputViewer = document.getElementById('outputViewer');
+
+                outputViewer.src = "data:application/pdf;base64, " + base64EncodedPDF;
 
             }
             };
@@ -64,5 +67,7 @@
         </script>
 
         <button onclick="myFunction()">Convert DOCX to PDF with Cloudmersive</button>
+
+        <iframe id="outputViewer" width=600 height=600></iframe>
     </body>
 </html>
