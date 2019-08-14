@@ -31,6 +31,7 @@
             return base64js.fromByteArray(bytes);
         }
 
+
         function myFunction() {
 
             input = document.getElementById('inputFile');
@@ -48,14 +49,19 @@
             var inputFile = input.files[0]; //Buffer.from(input.files[0]); // File | Input file to perform the operation on.
 
 
-            var callback = function(error, data, response) {
+            var callback = async function(error, data, response) {
             if (error) {
                 console.error(error);
             } else {
                 console.log('API called successfully. Returned data: ' + response.body);
 
-                arrayBuffer = new Response(response.body).arrayBuffer();
-                base64EncodedPDF = Base64Encode(arrayBuffer);
+                arrayBuffer = await new Response(response.body).arrayBuffer();
+                //base64EncodedPDF = arrayToBase64String(arrayBuffer);
+
+                base64EncodedPDF = btoa(
+                    new Uint8Array(arrayBuffer)
+                        .reduce((data, byte) => data + String.fromCharCode(byte), '')
+                    );
 
                 outputViewer = document.getElementById('outputViewer');
 
