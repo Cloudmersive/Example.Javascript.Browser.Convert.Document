@@ -19,6 +19,7 @@
         <![endif]-->
         
         <script>
+        function myFunction() {
             var defaultClient = cloudmersiveConvertApiClient.ApiClient.instance;
 
             // Configure API key authorization: Apikey
@@ -40,6 +41,9 @@
             }
             };
             apiInstance.convertDocumentDocxToPdf(inputFile, callback);
+        }
         </script>
+
+        <button onclick="myFunction()">Click me</button>
     </body>
 </html>
