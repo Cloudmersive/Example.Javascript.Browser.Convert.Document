@@ -54,7 +54,8 @@
             } else {
                 console.log('API called successfully. Returned data: ' + response.body);
 
-                base64EncodedPDF = Base64Encode(response.body);
+                arrayBuffer = await new Response(response.body).arrayBuffer();
+                base64EncodedPDF = Base64Encode(arrayBuffer);
 
                 outputViewer = document.getElementById('outputViewer');
 
