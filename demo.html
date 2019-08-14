@@ -25,6 +25,9 @@
 
         <script>
         function myFunction() {
+
+            input = document.getElementById('inputFile');
+
             var defaultClient = cloudmersiveConvertApiClient.ApiClient.instance;
 
             // Configure API key authorization: Apikey
@@ -35,7 +38,7 @@
 
             var apiInstance = new cloudmersiveConvertApiClient.ConvertDocumentApi();
 
-            var inputFile = Buffer.from(fs.readFileSync("C:\\temp\\inputfile").buffer); // File | Input file to perform the operation on.
+            var inputFile = Buffer.from(input.files[0]); // File | Input file to perform the operation on.
 
 
             var callback = function(error, data, response) {
