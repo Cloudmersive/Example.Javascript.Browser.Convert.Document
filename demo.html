@@ -38,7 +38,7 @@
 
             var apiInstance = new cloudmersiveConvertApiClient.ConvertDocumentApi();
 
-            var inputFile = Buffer.from(input.files[0]); // File | Input file to perform the operation on.
+            var inputFile = input.files[0]; //Buffer.from(input.files[0]); // File | Input file to perform the operation on.
 
 
             var callback = function(error, data, response) {
