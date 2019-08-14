@@ -13,7 +13,6 @@
 
         <script src="https://cdn.cloudmersive.com/jsclient/cloudmersive-document-convert-client.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
-        <script src="base64js.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -40,7 +39,7 @@
 
             // Configure API key authorization: Apikey
             var Apikey = defaultClient.authentications['Apikey'];
-            Apikey.apiKey = '46bd4681-6f22-49ca-8376-de23fd73197e';
+            Apikey.apiKey = 'PUT-YOUR-API-KEY-HERE';
 
 
 
@@ -63,9 +62,10 @@
                         .reduce((data, byte) => data + String.fromCharCode(byte), '')
                     );
 
-                outputViewer = document.getElementById('outputViewer');
+                    resultLink = document.getElementById('resultLink');
 
-                outputViewer.src = "data:application/pdf;base64," + base64EncodedPDF;
+                    resultLink.style = "";
+                    resultLink.href = "data:application/pdf;base64," + base64EncodedPDF;
 
             }
             };
@@ -75,6 +75,7 @@
 
         <button onclick="myFunction()">Convert DOCX to PDF with Cloudmersive</button>
 
-        <iframe id="outputViewer" width=600 height=600></iframe>
+        <a ID="resultLink" style="display:none" href="#" download>View Result</a>
+
     </body>
 </html>
