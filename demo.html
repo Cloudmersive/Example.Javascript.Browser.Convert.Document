@@ -13,6 +13,7 @@
 
         <script src="https://cdn.cloudmersive.com/jsclient/cloudmersive-document-convert-client.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+        <script src="base64js.min.js"></script>
     </head>
     <body>
         <!--[if lt IE 7]>
@@ -24,6 +25,12 @@
         accept="application/docx">
 
         <script>
+
+        function Base64Encode(str, encoding = 'utf-8') {
+            var bytes = new (typeof TextEncoder === "undefined" ? TextEncoderLite : TextEncoder)(encoding).encode(str);        
+            return base64js.fromByteArray(bytes);
+        }
+
         function myFunction() {
 
             input = document.getElementById('inputFile');
@@ -32,7 +39,7 @@
 
             // Configure API key authorization: Apikey
             var Apikey = defaultClient.authentications['Apikey'];
-            Apikey.apiKey = 'YOUR API KEY';
+            Apikey.apiKey = '46bd4681-6f22-49ca-8376-de23fd73197e';
 
 
 
@@ -45,13 +52,17 @@
             if (error) {
                 console.error(error);
             } else {
-                console.log('API called successfully. Returned data: ' + data);
+                console.log('API called successfully. Returned data: ' + response.body);
+
+                base64EncodedPDF = Base64Encode(response.body);
+                window.open("data:application/pdf;base64, " + base64EncodedPDF);
+
             }
             };
             apiInstance.convertDocumentDocxToPdf(inputFile, callback);
         }
         </script>
 
-        <button onclick="myFunction()">Click me</button>
+        <button onclick="myFunction()">Convert DOCX to PDF with Cloudmersive</button>
     </body>
 </html>
